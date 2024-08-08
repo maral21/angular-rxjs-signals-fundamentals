@@ -15,7 +15,14 @@ export class ProductService {
   getProducts(): Observable<Product[]> {
     return this.http.get<Product[]>(this.productsUrl)
       .pipe(
-        tap(() => console.log('In http.get pipeline')),
+        tap(() => console.log('In http.get all products pipeline')),
+      );
+  }
+
+  getProduct(id: number): Observable<Product> {
+    return this.http.get<Product>(`${this.productsUrl}/${id}`)
+      .pipe(
+        tap(() => console.log('In http.get one product by id pipeline')),
       );
   }
 }
