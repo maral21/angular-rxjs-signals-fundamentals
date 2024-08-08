@@ -27,6 +27,7 @@ export class ProductService {
     return this.http.get<Product>(`${this.productsUrl}/${id}`)
       .pipe(
         tap(() => console.log('In http.get one product by id pipeline')),
+        catchError(err => this.handleError(err)),
       );
   }
 
