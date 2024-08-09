@@ -21,7 +21,6 @@ export class ProductListComponent {
   // Products
   products$ = this.productService.products$
   .pipe(
-    tap(() => console.log('In component pipeline')),
     catchError(err => 
       {
         this.errorMessage = err;
