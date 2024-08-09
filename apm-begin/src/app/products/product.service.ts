@@ -17,13 +17,11 @@ export class ProductService {
   private errorService = inject(HttpErrorService);
   private reviewService = inject(ReviewService);
 
-  getProducts(): Observable<Product[]> {
-    return this.http.get<Product[]>(this.productsUrl)
-      .pipe(
-        tap(() => console.log('In http.get all products pipeline')),
-        catchError(err => this.handleError(err)),
-      );
-  }
+  readonly products$ = this.http.get<Product[]>(this.productsUrl)
+  .pipe(
+    tap(() => console.log('In http.get all products pipeline')),
+    catchError(err => this.handleError(err)),
+  );
 
   getProduct(id: number): Observable<Product> {
     return this.http.get<Product>(`${this.productsUrl}/${id}`)
